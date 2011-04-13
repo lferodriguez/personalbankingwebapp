@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="PersonalBanking">
+</Property><Property Name="Solution File" Value="C:\Documents and Settings\Administrator\Desktop\personal - documents\applications\PersonalBanking\PersonalBanking.sln">
+</Property><Property Name="Date" Value="Thursday, September 30, 2010">
+</Property><Property Name="Time" Value="10:00 AM">
+</Property></Properties><Event ErrorLevel="0" Project="PersonalBanking" Source="PersonalBanking.vbproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="PersonalBanking" Source="PersonalBanking.vbproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="PersonalBanking.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="PersonalBanking.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="PersonalBanking" Source="PersonalBanking.vbproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>
