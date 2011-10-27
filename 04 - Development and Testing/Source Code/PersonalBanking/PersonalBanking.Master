@@ -33,7 +33,12 @@
                 <li><a href="addTransaction.aspx?userAction=5">Make a transfer</a></li>
             </ul>
             </li>
-            <li><a href="statistics.aspx">Statistics</a></li>
+            <li> Statistics
+                <ul>
+                    <li><a href="statistics.aspx">Summary</a></li>
+                    <li><a href="dataAnalysis01.aspx">V & H Analysis</a></li>
+                 </ul>                
+            </li>
         </ul>                            
         </div>
         <div id="cntdr_pbmaster_main"><asp:ContentPlaceHolder ID="pbmaster_main" runat="server"></asp:ContentPlaceHolder></div>

@@ -20,6 +20,10 @@
         Withdrawl = 2
         All = 3
     End Enum
+    Enum catalogCurrency
+        que = 1
+        dol = 2
+    End Enum
 
     Sub New()
         _dbCon = New clsDbWrapper

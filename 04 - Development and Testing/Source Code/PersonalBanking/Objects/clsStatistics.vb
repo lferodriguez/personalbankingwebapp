@@ -24,6 +24,9 @@
             Return _dsConsulta
         End Get
     End Property
+
+    Private Property st As Object
+
     Public Sub getDateRageByPeriod(ByRef startDate As DateTime, _
                                      ByRef endDate As DateTime, _
                                      ByVal period As Period)
@@ -63,6 +66,19 @@
         Return result
     End Function
 
+    Private Function createDataStructureForStateOfIncome(ByVal periodToConsider As Period) As DataSet
+        Dim result As DataSet
+        Dim counter As Integer = periodToConsider
+        result = New DataSet("Results")
+        result.Tables.Add(New DataTable("Result"))
+        result.Tables(0).Columns.Add(New DataColumn("Concept", System.Type.GetType("System.String")))
+        While counter > 0
+            result.Tables(0).Columns.Add(New DataColumn("Q" & counter, System.Type.GetType("System.Double")))
+            result.Tables(0).Columns.Add(New DataColumn("US$" & counter, System.Type.GetType("System.Double")))                        
+            counter = counter - 1
+        End While
+        Return result
+    End Function
     Public Function analyzeIncomesAndExpenses(ByVal concepts As DataSet, ByVal firstPeriod As Period, ByVal currency As clsAccount.accountCurrencies)
         Dim booldev As Boolean = False
         Dim firstdate As DateTime
@@ -199,5 +215,107 @@
         End Try
         Return booldev
     End Function
-    
+
+    Public Function AccountAnalysis(ByVal webUser As Integer) As Boolean
+        Dim booldev As Boolean = False
+        Dim spparameters As New SpParameters
+        spparameters.Add("webUser", webUser, SpParameter.tipoParametro.entero)
+        booldev = _dbCon.ejecutarProcedimientoAlmacenado("accountTypeBalancePerWebUser", spparameters)
+        _informacionAdicional = _dbCon.informacionAdicional
+        _dsConsulta = _dbCon.resultadoConsulta        
+        Return booldev
+    End Function
+    Private Function getValue(ByVal data As DataTable, ByVal typeOfValue As clsCatalogs.catalogTransactionConceptTypeFlowType, ByVal currency As clsAccount.accountCurrencies) As Double
+        Dim res As Double = 0
+        Try
+            res = IIf(data.Select("transactionConceptFlowType = " & typeOfValue & " and currency = " & currency).Count > 0,
+                              CDbl(data.Select("transactionConceptFlowType = " & typeOfValue & " and currency = " & currency)(0)("total").ToString()), 0)
+
+        Catch ex As Exception
+            res = 0
+        End Try
+        Return res
+    End Function
+    Public Function stateOfIncomeAnalysis(ByVal webUser As Integer)
+        Dim booldev As Boolean = False
+        Dim firstDate As DateTime
+        Dim endDate As DateTime
+        Dim dsTemp As DataSet
+        Dim intperiod As Integer = 0
+        Dim rowCol As Integer = 0
+        Dim spparameters As SpParameters
+
+        dsTemp = createDataStructureForStateOfIncome(Period.SixMonthsAgo)
+
+        Dim Income_que As Double
+        Dim Income_Dol As Double
+        Dim Expense_que As Double
+        Dim Expense_dol As Double
+        Dim GrossProfit_Que As Double
+        Dim GrossProfit_Dol As Double
+        Dim profitability_Que As Double
+        Dim profitability_Dol As Double
+
+        intperiod = Period.SixMonthsAgo
+        Dim incomeRow As DataRow
+        Dim expensesRow As DataRow
+        Dim grossProfitRow As DataRow
+        Dim profitabilityRow As DataRow
+
+        incomeRow = dsTemp.Tables(0).NewRow
+        expensesRow = dsTemp.Tables(0).NewRow
+        grossProfitRow = dsTemp.Tables(0).NewRow
+        profitabilityRow = dsTemp.Tables(0).NewRow
+
+        incomeRow("concept") = "Income"
+        expensesRow("concept") = "Expenses"
+        grossProfitRow("concept") = "Gross Profit"
+        profitabilityRow("concept") = "Profitability"
+        rowCol = 1
+        While (intperiod > 0)
+
+            getDateRageByPeriod(firstDate, endDate, intperiod)
+            spparameters = New SpParameters
+            spparameters.Add("webUser", webUser, SpParameter.tipoParametro.entero)
+            spparameters.Add("startDate", firstDate, SpParameter.tipoParametro.cadena)
+            spparameters.Add("endDate", endDate, SpParameter.tipoParametro.cadena)
+            _dbCon.ejecutarProcedimientoAlmacenado("stateOfIncomePerWebUserPerPeriod", spparameters)
+
+            Income_que = getValue(_dbCon.resultadoConsulta.Tables(0), clsCatalogs.catalogTransactionConceptTypeFlowType.Income, clsAccount.accountCurrencies.Que)
+            Income_Dol = getValue(_dbCon.resultadoConsulta.Tables(0), clsCatalogs.catalogTransactionConceptTypeFlowType.Income, clsAccount.accountCurrencies.Dol)
+            Expense_que = getValue(_dbCon.resultadoConsulta.Tables(0), clsCatalogs.catalogTransactionConceptTypeFlowType.Expense, clsAccount.accountCurrencies.Que)
+            Expense_dol = getValue(_dbCon.resultadoConsulta.Tables(0), clsCatalogs.catalogTransactionConceptTypeFlowType.Expense, clsAccount.accountCurrencies.Dol)
+            GrossProfit_Que = Income_que - Expense_que
+            GrossProfit_Dol = Income_Dol - Expense_dol
+
+            profitability_Que = IIf(Income_que > 0, (Income_que - Expense_que) / Income_que, 0.0)
+            profitability_Dol = IIf(Income_Dol > 0, (Income_Dol - Expense_dol) / Income_Dol, 0.0)
+
+            incomeRow(rowCol) = Income_que
+            incomeRow(rowCol + 1) = Income_Dol
+            expensesRow(rowCol) = Expense_que
+            expensesRow(rowCol + 1) = Expense_dol
+            grossProfitRow(rowCol) = GrossProfit_Que
+            grossProfitRow(rowCol + 1) = GrossProfit_Dol
+            profitabilityRow(rowCol) = profitability_Que
+            profitabilityRow(rowCol + 1) = profitability_Dol
+            intperiod = intperiod - 1
+            rowCol = rowCol + 2
+        End While
+        dsTemp.Tables(0).Rows.Add(incomeRow)
+        dsTemp.Tables(0).Rows.Add(expensesRow)
+        dsTemp.Tables(0).Rows.Add(grossProfitRow)
+        dsTemp.Tables(0).Rows.Add(profitabilityRow)
+        _dsConsulta = dsTemp
+        Return booldev
+    End Function
+    Public Function CreditCardAnalysis(ByVal webUser As Integer)
+        Dim booldev As Boolean = False
+        Dim spparameters As New SpParameters
+        spparameters.Add("webUser", webUser, SpParameter.tipoParametro.entero)
+        booldev = _dbCon.ejecutarProcedimientoAlmacenado("CreditCarDBalanceAndParametersPerWebUser", spparameters)
+        _informacionAdicional = _dbCon.informacionAdicional
+        _dsConsulta = _dbCon.resultadoConsulta
+        Return booldev
+    End Function
 End Class
