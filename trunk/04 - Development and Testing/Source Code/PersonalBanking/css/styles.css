@@ -26,11 +26,20 @@ table.accountBalance td{ text-align:left; height:20px;}
 table.accountBalance td.highlight_center{ text-align:left; font-size:15px; font-weight:bolder; padding-right:5px;}
 table.accountBalance a{font-size:10px; color:#516981;}
 
-table.homeResume { width:400px; padding-left: 50px;}
-table.homeResume th {text-align:center; height:20px; color:#516981; font-size: 12px; font-weight:bold;}
-table.homeResume td {text-align:center;}
-table.homeResume td.highlight{ text-align:left; font-size:15px; font-weight:bolder; padding-right:5px;}
-table.homeResume td.highlightRed{ text-align:left; font-size:15px; font-weight:bolder; padding-right:5px; color:#B40606;}
+table.homeResume { width:100%;}
+table.homeResume td {padding-left:10px;}
+
+table.homeAnalysis { border:0px solid #FFFFFF;}
+table.homeAnalysis th { background-color:#516981; color:#FFFFFF; border:0px solid #FFFFFF;}
+table.homeAnalysis td {border:0px solid #FFFFFF; padding-left:0px;}
+table.homeAnalysis tr { border-bottom:1px solid #e0e0e0; height:20px;}
+table.homeAnalysis td.reviewCell{border:0px solid #FFFFFF; padding-left:0px; color:red;}
+
+#main-generatedAnalysis01 {width:100%; }
+#main-generatedAnalysis01 td { height:20px; text-align:center; border-bottom:1px solid #e0e0e0; }
+#main-generatedAnalysis01 th { background-color:#516981; color:#FFFFFF; height:20px; }
+
+
 
 
 ol.radioLabels{background: #516981; 

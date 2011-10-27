@@ -11,32 +11,23 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class main
+Partial Public Class accountBalances
 
     '''<summary>
-    '''accountAnalysis control.
+    '''lblAccountBalances control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents accountAnalysis As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents lblAccountBalances As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''lblIncomeAnalysis control.
+    '''lblResume control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblIncomeAnalysis As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''grdAccountAnalysis control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents grdAccountAnalysis As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents lblResume As Global.System.Web.UI.WebControls.Label
 End Class

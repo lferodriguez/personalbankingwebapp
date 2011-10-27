@@ -80,9 +80,11 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="accountBalances.aspx" />
     <Content Include="css\layout.css" />
     <Content Include="css\ps_statistics.css" />
     <Content Include="css\styles.css" />
+    <Content Include="dataAnalysis01.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="js\jdMenu\jquery.bgiframe.js" />
     <Content Include="js\jdMenu\jquery.dimensions.js" />
@@ -94,6 +96,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="accountBalances.aspx.designer.vb">
+      <DependentUpon>accountBalances.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="accountBalances.aspx.vb">
+      <DependentUpon>accountBalances.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="accountHistory.aspx.designer.vb">
       <DependentUpon>accountHistory.aspx</DependentUpon>
     </Compile>
@@ -106,6 +115,13 @@
     </Compile>
     <Compile Include="addTransaction.aspx.vb">
       <DependentUpon>addTransaction.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="dataAnalysis01.aspx.designer.vb">
+      <DependentUpon>dataAnalysis01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dataAnalysis01.aspx.vb">
+      <DependentUpon>dataAnalysis01.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Objects\clsAccount.vb" />
