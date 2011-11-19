@@ -6,235 +6,76 @@ PersonalBanking
 </name>
 </assembly>
 <members>
-<member name="F:PersonalBanking.Encrypt.C1">
- Llaves de encriptacion
+<member name="M:PersonalBanking.SpParameters.#ctor">
+ New(Constructor de la clase)
+     Inicializa todas las variables "string"
 
-</member><member name="T:PersonalBanking.Encrypt">
- Encrypt
-     Maneja los algoritmos de encritpación y decriptación de la banca en línea
+</member><member name="M:PersonalBanking.SpParameters.Add(System.String,System.String,PersonalBanking.SpParameter.tipoParametro)">
+ Add
+     Agrega un parámetro nuevo a la lista 
 
- Autor:  Pedro Ruiz - código basado en la versión en Vb6 por cspsr y csphf -
+ Parámetros:
+     strNombre,  nombre del parámetro a agregar
+     strValor,   valor del parámetro a agregar (convertido a string)
+ 
+ Valor de retorno:
+     Ninguno
 
- Fecha de creación: 31 de Mayo de 2007
+</member><member name="M:PersonalBanking.SpParameters.Add(PersonalBanking.SpParameter)">
+ Add
+     Agrega un parámetro nuevo a la lista 
+
+ Parámetros:
+     sppParameter, parametro nuevo a agregar (de tipo SpParameter)
+ 
+ Valor de retorno:
+     Ninguno
+
+</member><member name="M:PersonalBanking.SpParameters.GetParameterAt(System.Int32)">
+ GetParameterAt
+     Devuelve el parametro en la posicion especificada
+
+ Parámetros:
+     index,  indíce de la posición del parámetro
+ 
+ Valor de retorno:
+     SpParameter, estructura de la forma Nombre, Valor
+
+</member><member name="M:PersonalBanking.SpParameters.Count">
+ Count
+     Indica la cantidad de parametros que contiene el objeto
+
+ Parámetros:
+     Ninguno
+ 
+ Valor de retorno:
+     Integer
+
+</member><member name="M:PersonalBanking.SpParameters.FormParametersString">
+ FormParametersString
+     Forma el string de parámetros de la forma:
+     Ejemplo:
+     @Cliente=1,@Instalacion=1332
+
+ Parámetros:
+     Ninguno
+ 
+ Valor de retorno:
+     String
+
+</member><member name="T:PersonalBanking.SpParameters">
+ SpParameters
+     Estructura de datos que contiene una lista de parametros para enviar a un store procedure
+     en la clase ConexionBdd
+
+ Autor(es): 
+     Lenin Fernando Rodríguez Conde, Pedro Ruiz
+ 
+ Fecha de creación: 
+     30 de Mayo de 2007
 
  Código propiedad de Canella, S.A.
 
-</member><member name="F:PersonalBanking.addTransaction.jqueryvalidateplugin1">
-	<summary>
-jqueryvalidateplugin1 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking.addTransaction.jquerydatepicker1">
-	<summary>
-jquerydatepicker1 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking.addTransaction.mview">
-	<summary>
-mview control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking.addTransaction.vStep001">
-	<summary>
-vStep001 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking.addTransaction.rblAction">
-	<summary>
-rblAction control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking.addTransaction.btnNext">
-	<summary>
-btnNext control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking.addTransaction.vStep002">
-	<summary>
-vStep002 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking.addTransaction.lblFirstMessage">
-	<summary>
-lblFirstMessage control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking.addTransaction.txtDate">
-	<summary>
-txtDate control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking.addTransaction.txtAmount">
-	<summary>
-txtAmount control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking.addTransaction.ddlConcept">
-	<summary>
-ddlConcept control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking.addTransaction.ddlAccounts">
-	<summary>
-ddlAccounts control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking.addTransaction.txtComment">
-	<summary>
-txtComment control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking.addTransaction.btnAdd">
-	<summary>
-btnAdd control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking.addTransaction.vstep003">
-	<summary>
-vstep003 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking.addTransaction.txtDate01">
-	<summary>
-txtDate01 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking.addTransaction.txtAmount01">
-	<summary>
-txtAmount01 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking.addTransaction.ddlDestinationAccount">
-	<summary>
-ddlDestinationAccount control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking.addTransaction.ddlSourceAccount">
-	<summary>
-ddlSourceAccount control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking.addTransaction.lblExchangeRate">
-	<summary>
-lblExchangeRate control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking.addTransaction.txtexchangeRate">
-	<summary>
-txtexchangeRate control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking.addTransaction.txtComment01">
-	<summary>
-txtComment01 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking.addTransaction.btnPayment">
-	<summary>
-btnPayment control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking.addTransaction.vstep004">
-	<summary>
-vstep004 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking.addTransaction.lblResultado">
-	<summary>
-lblResultado control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking.main.lblAccountBalances">
-	<summary>
-lblAccountBalances control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking.main.lblResume">
-	<summary>
-lblResume control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
 </member><member name="M:PersonalBanking.SQLServerConnection.#ctor">
  New(Constructor de la clase)
      Inicializa todas las variables "string"
@@ -452,28 +293,55 @@ Atributos del Parametro
 
  Código propiedad de Canella, S.A.
 
-</member><member name="P:PersonalBanking.My.Resources.Resources.ResourceManager">
+</member><member name="F:PersonalBanking.accountHistory.lblAccountInformation">
 	<summary>
-  Returns the cached ResourceManager instance used by this class.
-</summary>
-</member><member name="P:PersonalBanking.My.Resources.Resources.Culture">
-	<summary>
-  Overrides the current thread's CurrentUICulture property for all
-  resource lookups using this strongly typed resource class.
-</summary>
-</member><member name="T:PersonalBanking.My.Resources.Resources">
-	<summary>
-  A strongly-typed resource class, for looking up localized strings, etc.
-</summary>
-</member><member name="F:PersonalBanking.PersonalBanking.head">
-	<summary>
-head control.
+lblAccountInformation control.
 </summary>
 	<remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:PersonalBanking.PersonalBanking.form1">
+</member><member name="F:PersonalBanking.accountHistory.ddlPeriods">
+	<summary>
+ddlPeriods control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.accountHistory.lblMensajes">
+	<summary>
+lblMensajes control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.accountHistory.gdResults">
+	<summary>
+gdResults control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.accountHistory.gdtctresume">
+	<summary>
+gdtctresume control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.accountHistory.gdtcresume">
+	<summary>
+gdtcresume control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking._Default.form1">
 	<summary>
 form1 control.
 </summary>
@@ -481,25 +349,254 @@ form1 control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:PersonalBanking.PersonalBanking.lblUserName">
+</member><member name="F:PersonalBanking._Default.txtEmail">
 	<summary>
-lblUserName control.
+txtEmail control.
 </summary>
 	<remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:PersonalBanking.PersonalBanking.hlkbOut">
+</member><member name="F:PersonalBanking._Default.txtPassword">
 	<summary>
-hlkbOut control.
+txtPassword control.
 </summary>
 	<remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:PersonalBanking.PersonalBanking.pbmaster_main">
+</member><member name="F:PersonalBanking._Default.btnIngresar">
 	<summary>
-pbmaster_main control.
+btnIngresar control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking._Default.lblMensajes">
+	<summary>
+lblMensajes control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking._Default.jqueryvalidateplugin1">
+	<summary>
+jqueryvalidateplugin1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.Encrypt.C1">
+ Llaves de encriptacion
+
+</member><member name="T:PersonalBanking.Encrypt">
+ Encrypt
+     Maneja los algoritmos de encritpación y decriptación de la banca en línea
+
+ Autor:  Pedro Ruiz - código basado en la versión en Vb6 por cspsr y csphf -
+
+ Fecha de creación: 31 de Mayo de 2007
+
+ Código propiedad de Canella, S.A.
+
+</member><member name="F:PersonalBanking.addTransaction.jqueryvalidateplugin1">
+	<summary>
+jqueryvalidateplugin1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.addTransaction.jquerydatepicker1">
+	<summary>
+jquerydatepicker1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.addTransaction.mview">
+	<summary>
+mview control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.addTransaction.vStep001">
+	<summary>
+vStep001 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.addTransaction.rblAction">
+	<summary>
+rblAction control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.addTransaction.btnNext">
+	<summary>
+btnNext control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.addTransaction.vStep002">
+	<summary>
+vStep002 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.addTransaction.lblFirstMessage">
+	<summary>
+lblFirstMessage control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.addTransaction.txtDate">
+	<summary>
+txtDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.addTransaction.txtAmount">
+	<summary>
+txtAmount control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.addTransaction.ddlConcept">
+	<summary>
+ddlConcept control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.addTransaction.ddlAccounts">
+	<summary>
+ddlAccounts control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.addTransaction.txtComment">
+	<summary>
+txtComment control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.addTransaction.btnAdd">
+	<summary>
+btnAdd control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.addTransaction.vstep003">
+	<summary>
+vstep003 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.addTransaction.txtDate01">
+	<summary>
+txtDate01 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.addTransaction.txtAmount01">
+	<summary>
+txtAmount01 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.addTransaction.ddlDestinationAccount">
+	<summary>
+ddlDestinationAccount control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.addTransaction.ddlSourceAccount">
+	<summary>
+ddlSourceAccount control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.addTransaction.lblExchangeRate">
+	<summary>
+lblExchangeRate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.addTransaction.txtexchangeRate">
+	<summary>
+txtexchangeRate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.addTransaction.txtComment01">
+	<summary>
+txtComment01 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.addTransaction.btnPayment">
+	<summary>
+btnPayment control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.addTransaction.vstep004">
+	<summary>
+vstep004 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.addTransaction.lblResultado">
+	<summary>
+lblResultado control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -553,77 +650,68 @@ lblexpensesdol control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="M:PersonalBanking.SpParameters.#ctor">
- New(Constructor de la clase)
-     Inicializa todas las variables "string"
-
-</member><member name="M:PersonalBanking.SpParameters.Add(System.String,System.String,PersonalBanking.SpParameter.tipoParametro)">
- Add
-     Agrega un parámetro nuevo a la lista 
-
- Parámetros:
-     strNombre,  nombre del parámetro a agregar
-     strValor,   valor del parámetro a agregar (convertido a string)
- 
- Valor de retorno:
-     Ninguno
-
-</member><member name="M:PersonalBanking.SpParameters.Add(PersonalBanking.SpParameter)">
- Add
-     Agrega un parámetro nuevo a la lista 
-
- Parámetros:
-     sppParameter, parametro nuevo a agregar (de tipo SpParameter)
- 
- Valor de retorno:
-     Ninguno
-
-</member><member name="M:PersonalBanking.SpParameters.GetParameterAt(System.Int32)">
- GetParameterAt
-     Devuelve el parametro en la posicion especificada
-
- Parámetros:
-     index,  indíce de la posición del parámetro
- 
- Valor de retorno:
-     SpParameter, estructura de la forma Nombre, Valor
-
-</member><member name="M:PersonalBanking.SpParameters.Count">
- Count
-     Indica la cantidad de parametros que contiene el objeto
-
- Parámetros:
-     Ninguno
- 
- Valor de retorno:
-     Integer
-
-</member><member name="M:PersonalBanking.SpParameters.FormParametersString">
- FormParametersString
-     Forma el string de parámetros de la forma:
-     Ejemplo:
-     @Cliente=1,@Instalacion=1332
-
- Parámetros:
-     Ninguno
- 
- Valor de retorno:
-     String
-
-</member><member name="T:PersonalBanking.SpParameters">
- SpParameters
-     Estructura de datos que contiene una lista de parametros para enviar a un store procedure
-     en la clase ConexionBdd
-
- Autor(es): 
-     Lenin Fernando Rodríguez Conde, Pedro Ruiz
- 
- Fecha de creación: 
-     30 de Mayo de 2007
-
- Código propiedad de Canella, S.A.
-
-</member><member name="F:PersonalBanking._Default.form1">
+</member><member name="P:PersonalBanking.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:PersonalBanking.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:PersonalBanking.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="F:PersonalBanking.accountBalances.lblAccountBalances">
+	<summary>
+lblAccountBalances control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.accountBalances.lblResume">
+	<summary>
+lblResume control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.main.accountAnalysis">
+	<summary>
+accountAnalysis control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.main.lblIncomeAnalysis">
+	<summary>
+lblIncomeAnalysis control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.main.grdAccountAnalysis">
+	<summary>
+grdAccountAnalysis control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.PersonalBanking.head">
+	<summary>
+head control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.PersonalBanking.form1">
 	<summary>
 form1 control.
 </summary>
@@ -631,89 +719,25 @@ form1 control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:PersonalBanking._Default.txtEmail">
+</member><member name="F:PersonalBanking.PersonalBanking.lblUserName">
 	<summary>
-txtEmail control.
+lblUserName control.
 </summary>
 	<remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:PersonalBanking._Default.txtPassword">
+</member><member name="F:PersonalBanking.PersonalBanking.hlkbOut">
 	<summary>
-txtPassword control.
+hlkbOut control.
 </summary>
 	<remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
-</member><member name="F:PersonalBanking._Default.btnIngresar">
+</member><member name="F:PersonalBanking.PersonalBanking.pbmaster_main">
 	<summary>
-btnIngresar control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking._Default.lblMensajes">
-	<summary>
-lblMensajes control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking._Default.jqueryvalidateplugin1">
-	<summary>
-jqueryvalidateplugin1 control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking.accountHistory.lblAccountInformation">
-	<summary>
-lblAccountInformation control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking.accountHistory.ddlPeriods">
-	<summary>
-ddlPeriods control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking.accountHistory.lblMensajes">
-	<summary>
-lblMensajes control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking.accountHistory.gdResults">
-	<summary>
-gdResults control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking.accountHistory.gdtctresume">
-	<summary>
-gdtctresume control.
-</summary>
-	<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member><member name="F:PersonalBanking.accountHistory.gdtcresume">
-	<summary>
-gdtcresume control.
+pbmaster_main control.
 </summary>
 	<remarks>
 Auto-generated field.
