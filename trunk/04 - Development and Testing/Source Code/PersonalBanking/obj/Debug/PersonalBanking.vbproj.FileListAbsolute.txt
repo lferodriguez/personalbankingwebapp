@@ -1,0 +1,10 @@
+D:\Personal\PersonalBanking\bin\PersonalBanking.dll
+D:\Personal\PersonalBanking\bin\PersonalBanking.pdb
+D:\Personal\PersonalBanking\bin\PersonalBanking.xml
+D:\Personal\PersonalBanking\obj\Debug\ResolveAssemblyReference.cache
+D:\Personal\PersonalBanking\obj\Debug\PersonalBanking.Resources.resources
+D:\Personal\PersonalBanking\obj\Debug\GenerateResource.read.1.tlog
+D:\Personal\PersonalBanking\obj\Debug\GenerateResource.write.1.tlog
+D:\Personal\PersonalBanking\obj\Debug\PersonalBanking.dll
+D:\Personal\PersonalBanking\obj\Debug\PersonalBanking.xml
+D:\Personal\PersonalBanking\obj\Debug\PersonalBanking.pdb
