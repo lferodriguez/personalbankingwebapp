@@ -86,12 +86,16 @@
     <Content Include="css\styles.css" />
     <Content Include="dataAnalysis01.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="deleteTransaction.aspx" />
+    <Content Include="eventHistory.aspx" />
+    <Content Include="images\delete.png" />
     <Content Include="js\jdMenu\jquery.bgiframe.js" />
     <Content Include="js\jdMenu\jquery.dimensions.js" />
     <Content Include="js\jdMenu\jquery.jdMenu.css" />
     <Content Include="js\jdMenu\jquery.jdMenu.js" />
     <Content Include="js\jdMenu\jquery.positionBy.js" />
     <Content Include="js\pf_statistics.js" />
+    <Content Include="js\scripts.js" />
     <Content Include="statistics.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -124,9 +128,24 @@
       <DependentUpon>dataAnalysis01.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="deleteTransaction.aspx.designer.vb">
+      <DependentUpon>deleteTransaction.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="deleteTransaction.aspx.vb">
+      <DependentUpon>deleteTransaction.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="eventHistory.aspx.designer.vb">
+      <DependentUpon>eventHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="eventHistory.aspx.vb">
+      <DependentUpon>eventHistory.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Objects\clsAccount.vb" />
     <Compile Include="Objects\clsAccountTransaction.vb" />
     <Compile Include="Objects\clsCatalogs.vb" />
+    <Compile Include="Objects\clsEvents.vb" />
     <Compile Include="Objects\clsStatistics.vb" />
     <Compile Include="Objects\clsWebUser.vb" />
     <Compile Include="DataAccess\SQLServerConnection.vb" />
@@ -176,7 +195,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Objects\modCatalogsInDataBase.vb" />
     <Compile Include="PersonalBanking.Master.designer.vb">
       <DependentUpon>PersonalBanking.Master</DependentUpon>
     </Compile>

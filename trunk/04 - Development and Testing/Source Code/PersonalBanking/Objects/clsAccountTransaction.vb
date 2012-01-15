@@ -77,14 +77,14 @@
         '------------------------------
         Select Case type
             Case transactionTypes.PayACreditCard
-                firstTransactionConcept = mci_transactionConcept.PartialCreditCardPayment
-                secondTransactionConcept = mci_transactionConcept.CreditCardPayment
+                firstTransactionConcept = clsCatalogs.mci_transactionConcept.PartialCreditCardPayment
+                secondTransactionConcept = clsCatalogs.mci_transactionConcept.CreditCardPayment
             Case transactionTypes.PayALoan
-                firstTransactionConcept = mci_transactionConcept.PartialLoanSubscription
-                secondTransactionConcept = mci_transactionConcept.LoanSubscription
+                firstTransactionConcept = clsCatalogs.mci_transactionConcept.PartialLoanSubscription
+                secondTransactionConcept = clsCatalogs.mci_transactionConcept.LoanSubscription
             Case transactionTypes.ElectronicTransfers
-                firstTransactionConcept = mci_transactionConcept.ViaElectronicTransferWithdrawl
-                secondTransactionConcept = mci_transactionConcept.ViaElectronicTransferDeposit
+                firstTransactionConcept = clsCatalogs.mci_transactionConcept.ViaElectronicTransferWithdrawl
+                secondTransactionConcept = clsCatalogs.mci_transactionConcept.ViaElectronicTransferDeposit
         End Select
 
 
@@ -115,8 +115,8 @@
             sourceValue = value
             destinationValue = value / exchangeRate
             If type = transactionTypes.ElectronicTransfers Then
-                firstTransactionConcept = mci_transactionConcept.PurchaseForeignCurrency
-                secondTransactionConcept = mci_transactionConcept.ViaElectronicTransferDeposit
+                firstTransactionConcept = clsCatalogs.mci_transactionConcept.PurchaseForeignCurrency
+                secondTransactionConcept = clsCatalogs.mci_transactionConcept.ViaElectronicTransferDeposit
             End If
         End If
 
@@ -126,8 +126,8 @@
             sourceValue = value
             destinationValue = value * exchangeRate
             If type = transactionTypes.ElectronicTransfers Then
-                firstTransactionConcept = mci_transactionConcept.SellForeignCurrency
-                secondTransactionConcept = mci_transactionConcept.ViaElectronicTransferDeposit
+                firstTransactionConcept = clsCatalogs.mci_transactionConcept.SellForeignCurrency
+                secondTransactionConcept = clsCatalogs.mci_transactionConcept.ViaElectronicTransferDeposit
             End If
 
         End If
@@ -161,6 +161,19 @@
                 _informacionAdicional = "Unable to get a transaction reference id."
             End If
         End If
+        Return booldev
+    End Function
+    Function deleteTransaction(ByVal webUser As Integer, ByVal transactionReference As Long, ByVal level As clsCatalogs.events) As Boolean
+        Dim booldev As Boolean = False
+
+        Dim spparameters As New SpParameters
+        spparameters.Add("pWebUser", webUser, SpParameter.tipoParametro.entero)
+        spparameters.Add("pTransactionReference", transactionReference, SpParameter.tipoParametro.entero)
+        spparameters.Add("pEventLevel", level, SpParameter.tipoParametro.entero)
+        spparameters.Add("pSource", System.Configuration.ConfigurationManager.AppSettings.Item("ApplicationName"), SpParameter.tipoParametro.cadena)
+        booldev = _dbCon.ejecutarProcedimientoAlmacenado("deleteTransaction", spparameters)
+        _informacionAdicional = _dbCon.informacionAdicional
+
         Return booldev
     End Function
 

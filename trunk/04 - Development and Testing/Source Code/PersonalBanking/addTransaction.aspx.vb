@@ -29,6 +29,7 @@
         yes = 1
         no = 2
     End Enum
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not Me.IsPostBack Then
             Dim userAction As Integer = 0
@@ -196,17 +197,20 @@
 
     Protected Sub btnAdd_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnAdd.Click
         Dim acct As New clsAccountTransaction
+        Dim evt As New clsEvents
         Dim idTransaction As Long = 0
         Dim message As String = ""    
         If (acct.executeATransaction(ddlAccounts.SelectedValue, ddlConcept.SelectedValue, _
                                      txtDate.Text, txtAmount.Text, _
                                      txtComment.Text, idTransaction)) Then
             message = "Transaction added succesfully. Transaction reference id: " & idTransaction
+            evt.addEvent(Session("sWebUserId"), idTransaction, clsCatalogs.events.Information)
         Else
             message = "Transaction aborted, due technical problems. Try again later. More:" & acct.informacionAdicional
         End If
         endPageWorkflow(message)
     End Sub
+
     Private Sub handlesStepOneWorkflow(ByVal userAction As Integer)
         Dim strMessage As String = ""
         Session("saddTransaction_userAction") = userAction
@@ -256,6 +260,7 @@
             endPageWorkflow(strMessage)
         End If
     End Sub
+
     Protected Sub btnNext_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnNext.Click
         handlesStepOneWorkflow(rblAction.SelectedValue)
     End Sub
@@ -347,6 +352,7 @@
         Dim message As String = ""
         Dim typeOfTransaction As Integer
         Dim accountTransers As New clsAccountTransaction
+        Dim evts As New clsEvents
 
         sourceAccount = ddlSourceAccount.SelectedValue
         destinationAccount = ddlDestinationAccount.SelectedValue
@@ -365,10 +371,12 @@
                                                           IIf(txtexchangeRate.Text = "", 0, txtexchangeRate.Text), txtComment01.Text, _
                                                          firstReferenceId, SecondReferenceId)) Then
             message = "Transaction completed successfully. A withdrawl has been processed with a Transaction Reference Id: " & firstReferenceId & _
-                        " A deposit has been processed with a Transaction Reference Id: " & firstReferenceId
+                        " A deposit has been processed with a Transaction Reference Id: " & SecondReferenceId
+            evts.addEvent(Session("sWebUserId"), firstReferenceId, SecondReferenceId, clsCatalogs.events.Information)
         Else
             message = "Transaction aborted, due technical problems. Try again later. More:" & SecondReferenceId
         End If
             endPageWorkflow(message)
     End Sub
+
 End Class
