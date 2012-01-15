@@ -139,4 +139,24 @@
         gdtctresume.DataBind()
         gdtcresume.DataBind()
     End Sub
+
+    Private Sub gdResults_RowDataBound(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewRowEventArgs) Handles gdResults.RowDataBound
+        If e.Row.RowType = DataControlRowType.DataRow Then
+            Dim checkboxesId As String = ""
+            Dim enc As New Encrypt
+            Dim divsToShowEffectId As String = ""
+            Dim strConfirmDeleteLink As String = ""
+
+            checkboxesId = "chk_" & gdResults.DataKeys(e.Row.RowIndex).Values(0).ToString
+            divsToShowEffectId = "div_" & gdResults.DataKeys(e.Row.RowIndex).Values(0).ToString
+            strConfirmDeleteLink = "<a href=""deleteTransaction.aspx?ref=" & enc.Encrypt_param(gdResults.DataKeys(e.Row.RowIndex).Values(0).ToString) & """><img src=""images/delete.png"" alt=""Delete"" border=""0""/></a>"
+            e.Row.Cells(0).Text = "<table cellpadding=""0"" cellspacing=""0"" border=""0""><tr>" & _
+                                  "<td>" & _
+                                  "<input class=""controlCheckbox"" type=""checkbox"" id=""" & checkboxesId & """ onClick=""showDeleteOption('" & checkboxesId & "','" & divsToShowEffectId & "');""/>" & _
+                                  "</td><td>" & _
+                                  "<div style=""display:none;"" class=""deletePanel"" id=""" & divsToShowEffectId & """> " & _
+                                    strConfirmDeleteLink & _
+                                  "</div></td></tr></table>"
+        End If
+    End Sub
 End Class

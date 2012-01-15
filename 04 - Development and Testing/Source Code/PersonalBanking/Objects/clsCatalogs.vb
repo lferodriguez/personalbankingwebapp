@@ -3,6 +3,23 @@
     Private _dsConsulta As DataSet
     Private _informacionAdicional As String
 
+    Enum mci_transactionConcept
+        CreditCardPayment = 54
+        PartialCreditCardPayment = 15
+        LoanSubscription = 53
+        PartialLoanSubscription = 57
+        ViaElectronicTransferDeposit = 48
+        ViaElectronicTransferWithdrawl = 49
+        PurchaseForeignCurrency = 35
+        SellForeignCurrency = 38
+    End Enum
+
+    Enum events
+        Information = 1
+        Warning = 2
+        Errorr = 3
+    End Enum
+
     Enum catalogTransactionConceptisConsiderableInConceptFlowType
         Yes = 1
         No = 2

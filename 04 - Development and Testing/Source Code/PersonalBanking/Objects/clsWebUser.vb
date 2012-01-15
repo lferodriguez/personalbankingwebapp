@@ -27,10 +27,13 @@
     End Function
     Function userAunthentication(ByVal usuario As String, ByVal contrasenia As String, ByRef idUsuario As Integer) As Boolean
         Dim booldev As Boolean = False
-        Dim strQry As String = ""
-        strQry = "select * from webuser where email='" & usuario.Replace("'", "''") & _
-                 "' and password='" & contrasenia.Replace("'", "''") & "' and enabled='Y'"
-        If (_dbCon.ejecutarInstruccionSQL(strQry, False)) Then
+        Dim enc As New Encrypt
+
+        Dim spparameters As New SpParameters
+        spparameters.Add("pEmail", usuario, SpParameter.tipoParametro.cadena)
+        spparameters.Add("pPassword", enc.Encrypt_param(contrasenia), SpParameter.tipoParametro.cadena)
+        booldev = _dbCon.ejecutarProcedimientoAlmacenado("authenticateUser", spparameters)
+        If (booldev) Then
             If (_dbCon.resultadoConsulta.Tables(0).Rows.Count > 0) Then
                 idUsuario = _dbCon.resultadoConsulta.Tables(0).Rows(0).Item("webuser")
                 booldev = True

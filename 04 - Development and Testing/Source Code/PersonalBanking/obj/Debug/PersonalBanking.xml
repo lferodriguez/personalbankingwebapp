@@ -6,7 +6,15 @@ PersonalBanking
 </name>
 </assembly>
 <members>
-<member name="M:PersonalBanking.SpParameters.#ctor">
+<member name="F:PersonalBanking.deleteTransaction.lblMensajes">
+	<summary>
+lblMensajes control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="M:PersonalBanking.SpParameters.#ctor">
  New(Constructor de la clase)
      Inicializa todas las variables "string"
 
@@ -402,6 +410,102 @@ To modify move field declaration from designer file to code-behind file.
 
  Código propiedad de Canella, S.A.
 
+</member><member name="F:PersonalBanking.eventHistory.jquerydatepicker1">
+	<summary>
+jquerydatepicker1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.eventHistory.jqueryvalidateplugin1">
+	<summary>
+jqueryvalidateplugin1 control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.eventHistory.hddStartDate">
+	<summary>
+hddStartDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.eventHistory.hddEndDate">
+	<summary>
+hddEndDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.eventHistory.hddSearchText">
+	<summary>
+hddSearchText control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.eventHistory.txtStartDate">
+	<summary>
+txtStartDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.eventHistory.txtEndDate">
+	<summary>
+txtEndDate control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.eventHistory.txtSearchString">
+	<summary>
+txtSearchString control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.eventHistory.btnAdd">
+	<summary>
+btnAdd control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.eventHistory.lblResults">
+	<summary>
+lblResults control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.eventHistory.grdEvent">
+	<summary>
+grdEvent control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.dataAnalysis01.lblIncomeAnalysis">
+	<summary>
+lblIncomeAnalysis control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:PersonalBanking.addTransaction.jqueryvalidateplugin1">
 	<summary>
 jqueryvalidateplugin1 control.
@@ -698,6 +802,14 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:PersonalBanking.main.grdAccountAnalysis">
 	<summary>
 grdAccountAnalysis control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.main.grdWebUserEvents">
+	<summary>
+grdWebUserEvents control.
 </summary>
 	<remarks>
 Auto-generated field.
