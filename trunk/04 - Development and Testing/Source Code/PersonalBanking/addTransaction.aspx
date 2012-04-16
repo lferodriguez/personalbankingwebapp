@@ -93,10 +93,24 @@
                 </div>
             </div>
             </asp:View>
-            <asp:View ID="vstep004" runat="server">
+            <asp:View ID="vstep004" runat="server">                        
             <div id="frmcontainer_finalmessages">
+                Messages: <br />
+                <br />
                 <asp:Label ID="lblResultado" runat="server" Text=""></asp:Label>
              </div>
+             <div>
+                <br />
+                <strong>Actions:</strong> <br />
+                <br />
+                <div class="frmcontainer_field">What would you like to do?</div>
+                <div class="frmcontainer_field">Take me out of here, and let me check this account history: <br />
+                <asp:DropDownList ID="ddlAccounttoMove" runat="server" CssClass="controlListBox" AutoPostBack="true">
+                </asp:DropDownList>
+                </div>
+                <div class="frmcontainer_field">Check your account balances again. Press <a href="accountBalances.aspx">Here</a></div>
+                <div class="frmcontainer_field">Go back to start. Press <a href="main.aspx">Here</a></div>                                
+            </div>
             </asp:View>
         </asp:MultiView>
         

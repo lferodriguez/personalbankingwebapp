@@ -6,9 +6,49 @@ PersonalBanking
 </name>
 </assembly>
 <members>
-<member name="F:PersonalBanking.deleteTransaction.lblMensajes">
+<member name="F:PersonalBanking.minimalStatistics.lblResumeQ">
 	<summary>
-lblMensajes control.
+lblResumeQ control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.minimalStatistics.lblResumeUS">
+	<summary>
+lblResumeUS control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.minimalStatistics.lblincomesQue">
+	<summary>
+lblincomesQue control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.minimalStatistics.lblexpensesQue">
+	<summary>
+lblexpensesQue control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.minimalStatistics.lblincomesDol">
+	<summary>
+lblincomesDol control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.minimalStatistics.lblexpensesdol">
+	<summary>
+lblexpensesdol control.
 </summary>
 	<remarks>
 Auto-generated field.
@@ -506,6 +546,14 @@ lblIncomeAnalysis control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member><member name="F:PersonalBanking.deleteTransaction.lblMensajes">
+	<summary>
+lblMensajes control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member><member name="F:PersonalBanking.addTransaction.jqueryvalidateplugin1">
 	<summary>
 jqueryvalidateplugin1 control.
@@ -701,6 +749,14 @@ To modify move field declaration from designer file to code-behind file.
 </member><member name="F:PersonalBanking.addTransaction.lblResultado">
 	<summary>
 lblResultado control.
+</summary>
+	<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member><member name="F:PersonalBanking.addTransaction.ddlAccounttoMove">
+	<summary>
+ddlAccounttoMove control.
 </summary>
 	<remarks>
 Auto-generated field.

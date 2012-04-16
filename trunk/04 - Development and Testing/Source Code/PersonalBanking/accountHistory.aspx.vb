@@ -50,7 +50,6 @@
             _messages = _messages & "Sorry, the URL you've entered is no longer avaible."
         End If
     End Sub
-
     Sub loadHistory(ByVal period As clsAccount.accountHistoryPeriod)
         Dim acct As New clsAccount
         Dim enc As New Encrypt
@@ -139,7 +138,6 @@
         gdtctresume.DataBind()
         gdtcresume.DataBind()
     End Sub
-
     Private Sub gdResults_RowDataBound(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewRowEventArgs) Handles gdResults.RowDataBound
         If e.Row.RowType = DataControlRowType.DataRow Then
             Dim checkboxesId As String = ""
@@ -157,6 +155,7 @@
                                   "<div style=""display:none;"" class=""deletePanel"" id=""" & divsToShowEffectId & """> " & _
                                     strConfirmDeleteLink & _
                                   "</div></td></tr></table>"
+
         End If
     End Sub
 End Class

@@ -1,11 +1,11 @@
 ﻿body {font-size:10px; font-family:Verdana, Arial, Tahoma;}
 div{font-family:Verdana, Arial, Tahoma;}
 
-.controlTextBox{ font-family:Verdana, Arial, Tahoma; font-size:10px; 
-                 width:300px;
+.controlTextBox{ font-family:Verdana, Arial, Tahoma;  font-size:10px;
+                 width:400px; 
                  border-color:#e0e0e0; border-width:1px; border-style:solid;}
 .controlListBox{ font-family:Verdana, Arial, Tahoma; font-size:10px; 
-                 width:300px; 
+                 width:400px; 
                  border-color:#e0e0e0; border-width:1px; border-style:solid;}
 .controlSubmit  { font-family:Verdana, Arial, Tahoma; font-size:10px;color:#FFFFFF;                    
                   width:100px;

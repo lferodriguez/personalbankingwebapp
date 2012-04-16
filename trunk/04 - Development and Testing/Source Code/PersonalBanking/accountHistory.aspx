@@ -9,7 +9,7 @@
         <div id="frmContainer_spacer">                        
         </div>
         <div id="frmContainer_toolBar">                        
-        | <a href="main.aspx">Return</a>
+        | <a href="accountBalances.aspx">Return</a>
         </div>
         <div id="frmContainer_generalInformation">
         <asp:Label ID="lblAccountInformation" runat="server"></asp:Label>
