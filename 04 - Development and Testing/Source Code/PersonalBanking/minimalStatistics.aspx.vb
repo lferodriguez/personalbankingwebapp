@@ -1,4 +1,4 @@
-﻿Public Class statistics
+﻿Public Class minimalStatistics
     Inherits System.Web.UI.Page
     Enum analyzeSense
         increases = 1
@@ -19,11 +19,13 @@
         Dim booldev As Boolean = False
         Dim statistics As clsStatistics
         Dim basecatalog As New clsCatalogs
+        Dim firstDate As DateTime
+        Dim lastDate As DateTime
         Dim writer As StringBuilder
         Dim lines As StringBuilder
         Dim counter As Integer = 0
-        Dim totals(3) As Double
-        Dim firstDate, lastDate As DateTime
+        Dim totalsCounter As Integer = 0
+        Dim totals(7) As Double
         Dim cssClass As String = ""
 
         basecatalog.TransactionConceptFlowType(clsCatalogs.catalogTransactionConceptTypeFlowType.IncomeAndExpenses)
@@ -31,37 +33,37 @@
         writer = New StringBuilder
         writer.AppendLine("<table cellpadding=""0"" cellspacing=""0"" border=""0"" class=""statistics_results"">")
         writer.AppendLine("<tr>")
-        writer.AppendLine("<td></td>")
+        writer.AppendLine("<td style=""width:20%;""></td>")
         statistics = New clsStatistics
+        statistics.getDateRageByPeriod(firstDate, lastDate, clsStatistics.Period.SixMonthsAgo)
+        writer.AppendLine("<td class=""max_header"" style=""width:12%;"">" & MonthName(firstDate.Month) & "/" & firstDate.Year.ToString() & "</td>")
+        statistics.getDateRageByPeriod(firstDate, lastDate, clsStatistics.Period.FiveMonthsago)
+        writer.AppendLine("<td class=""max_header"" style=""width:12%;"">" & MonthName(firstDate.Month) & "/" & firstDate.Year.ToString() & "</td>")
+        statistics.getDateRageByPeriod(firstDate, lastDate, clsStatistics.Period.FourMonthsago)
+        writer.AppendLine("<td class=""max_header"" style=""width:12%;"">" & MonthName(firstDate.Month) & "/" & firstDate.Year.ToString() & "</td>")
+        statistics.getDateRageByPeriod(firstDate, lastDate, clsStatistics.Period.ThreeMonthsago)
+        writer.AppendLine("<td class=""max_header"" style=""width:12%;"">" & MonthName(firstDate.Month) & "/" & firstDate.Year.ToString() & "</td>")
         statistics.getDateRageByPeriod(firstDate, lastDate, clsStatistics.Period.TwoMonthsago)
-        writer.AppendLine("<td colspan=""5"" class=""max_header"">" & MonthName(firstDate.Month) & "/" & firstDate.Year.ToString() & "</td>")
+        writer.AppendLine("<td class=""max_header"" style=""width:12%;"">" & MonthName(firstDate.Month) & "/" & firstDate.Year.ToString() & "</td>")
         statistics.getDateRageByPeriod(firstDate, lastDate, clsStatistics.Period.LastMonth)
-        writer.AppendLine("<td colspan=""5"" class=""max_header"">" & MonthName(firstDate.Month) & "/" & firstDate.Year.ToString() & "</td>")
+        writer.AppendLine("<td class=""max_header"" style=""width:12%;"">" & MonthName(firstDate.Month) & "/" & firstDate.Year.ToString() & "</td>")
         statistics.getDateRageByPeriod(firstDate, lastDate, clsStatistics.Period.ThisMonth)
-        writer.AppendLine("<td colspan=""5"" class=""max_header"">" & MonthName(firstDate.Month) & "/" & firstDate.Year.ToString() & "</td>")
+        writer.AppendLine("<td class=""max_header"" style=""width:12%;"">" & MonthName(firstDate.Month) & "/" & firstDate.Year.ToString() & "</td>")
         writer.AppendLine("</tr>")
         writer.AppendLine("<tr>")
         writer.AppendLine("<td class=""header"">Concept</td>")
-        writer.AppendLine("<td class=""header"">Trans</td>")
-        writer.AppendLine("<td class=""header"">Avg.</td>")
-        writer.AppendLine("<td class=""header"">Trans per day</td>")
-        writer.AppendLine("<td class=""header"">Avg. per day</td>")
         writer.AppendLine("<td class=""header"">Total</td>")
-        writer.AppendLine("<td class=""header"">Trans</td>")
-        writer.AppendLine("<td class=""header"">Avg.</td>")
-        writer.AppendLine("<td class=""header"">Trans per day</td>")
-        writer.AppendLine("<td class=""header"">Avg. per day</td>")
         writer.AppendLine("<td class=""header"">Total</td>")
-        writer.AppendLine("<td class=""header"">Trans</td>")
-        writer.AppendLine("<td class=""header"">Avg.</td>")
-        writer.AppendLine("<td class=""header"">Trans per day</td>")
-        writer.AppendLine("<td class=""header"">Avg. per day</td>")
+        writer.AppendLine("<td class=""header"">Total</td>")
+        writer.AppendLine("<td class=""header"">Total</td>")
+        writer.AppendLine("<td class=""header"">Total</td>")
         writer.AppendLine("<td class=""header"">Total</td>")
         writer.AppendLine("</tr>")
         lines = New StringBuilder
         statistics = New clsStatistics
-        If (statistics.analyzeIncomesAndExpenses(basecatalog.resultadoConsulta, clsStatistics.Period.TwoMonthsago, currency)) Then
+        If (statistics.analyzeIncomesAndExpenses(basecatalog.resultadoConsulta, clsStatistics.Period.SixMonthsAgo, currency)) Then
             For Each drTemp As DataRow In statistics.resultadoConsulta.Tables(0).Rows
+                totalsCounter = 0
                 lines.AppendLine("<tr>")
                 lines.AppendLine("<td class=""cell_concept"">" & drTemp.Item("Concept") & "</td>")
                 For counter = 1 To statistics.resultadoConsulta.Tables(0).Columns.Count - 1
@@ -69,41 +71,20 @@
                     '| Getting totals and analyzing.
                     '+------------------------------------
                     cssClass = "cell"
-                    Select Case counter
-                        Case 4
-                            cssClass = "cell_reference"
-                        Case 5
-                            totals(0) = totals(0) + CDbl(drTemp.Item(counter))
-                        Case 9
-                            If (ToAnalyze = analyzeSense.increases) Then
-                                cssClass = IIf(CDbl(drTemp.Item(9)) > CDbl(drTemp.Item(4)), "cell_warning", "cell_passed")
-                            Else
-                                cssClass = IIf(CDbl(drTemp.Item(9)) < CDbl(drTemp.Item(4)), "cell_warning", "cell_passed")
-                            End If
-                        Case 10
-                            totals(1) = totals(1) + CDbl(drTemp.Item(counter))
-                        Case 14
-                            If (ToAnalyze = analyzeSense.increases) Then
-                                cssClass = IIf(CDbl(drTemp.Item(14)) > CDbl(drTemp.Item(9)), "cell_warning", "cell_passed")
-                            Else
-                                cssClass = IIf(CDbl(drTemp.Item(14)) < CDbl(drTemp.Item(9)), "cell_warning", "cell_passed")
-                            End If
 
-                        Case 15
-                            totals(2) = totals(2) + CDbl(drTemp.Item(counter))
-                    End Select
-                    lines.AppendLine("<td class=""" & cssClass & """>" & CDbl(drTemp.Item(counter)).ToString("N2") & "</td>")
+                    If (statistics.resultadoConsulta.Tables(0).Columns(counter).ColumnName.StartsWith("Total-")) Then
+                        lines.AppendLine("<td class=""" & cssClass & """>" & CDbl(drTemp.Item(counter)).ToString("N2") & "</td>")
+                        totals(totalsCounter) = totals(totalsCounter) + CDbl(drTemp.Item(counter))
+                        totalsCounter = totalsCounter + 1
+                    End If
                 Next
                 lines.AppendLine("</tr>")
             Next
             lines.AppendLine("<tr>")
             lines.AppendLine("<td class=""cell_concept"">Totals</td>")
-            lines.AppendLine("<td colspan=""4"" class=""cell""></td>")
-            lines.AppendLine("<td class=""cell_total"">" & totals(0).ToString("N2") & " </td>")
-            lines.AppendLine("<td colspan=""4"" class=""cell""></td>")
-            lines.AppendLine("<td class=""cell_total"">" & totals(1).ToString("N2") & " </td>")
-            lines.AppendLine("<td colspan=""4"" class=""cell""></td>")
-            lines.AppendLine("<td class=""cell_total"">" & totals(2).ToString("N2") & " </td>")
+            For totalsCounter = 0 To 6
+                lines.AppendLine("<td class=""cell_total"">" & totals(totalsCounter).ToString("N2") & " </td>")
+            Next
             lines.AppendLine("</tr>")
         Else
             'Error. Imposible to get the data
@@ -128,8 +109,10 @@
         Dim writer As StringBuilder
         Dim lines As StringBuilder
         Dim counter As Integer = 0
-        Dim totals(3) As Double
-        Dim firstDate, lastDate As DateTime
+        Dim totalsCounter As Integer = 0
+        Dim totals(7) As Double
+        Dim firstDate As DateTime
+        Dim lastDate As DateTime
         Dim cssClass As String = ""
         Select Case whatType
             Case clsCatalogs.catalogTransactionConceptTypeFlowType.Income
@@ -148,37 +131,37 @@
         writer = New StringBuilder
         writer.AppendLine("<table cellpadding=""0"" cellspacing=""0"" border=""0"" class=""statistics_results"">")
         writer.AppendLine("<tr>")
-        writer.AppendLine("<td></td>")
+        writer.AppendLine("<td style=""width:20%;""></td>")
         statistics = New clsStatistics
+        statistics.getDateRageByPeriod(firstDate, lastDate, clsStatistics.Period.SixMonthsAgo)
+        writer.AppendLine("<td class=""max_header"" style=""width:12%;"">" & MonthName(firstDate.Month) & "/" & firstDate.Year.ToString() & "</td>")
+        statistics.getDateRageByPeriod(firstDate, lastDate, clsStatistics.Period.FiveMonthsago)
+        writer.AppendLine("<td class=""max_header"" style=""width:12%;"">" & MonthName(firstDate.Month) & "/" & firstDate.Year.ToString() & "</td>")
+        statistics.getDateRageByPeriod(firstDate, lastDate, clsStatistics.Period.FourMonthsago)
+        writer.AppendLine("<td class=""max_header"" style=""width:12%;"">" & MonthName(firstDate.Month) & "/" & firstDate.Year.ToString() & "</td>")
+        statistics.getDateRageByPeriod(firstDate, lastDate, clsStatistics.Period.ThreeMonthsago)
+        writer.AppendLine("<td class=""max_header"" style=""width:12%;"">" & MonthName(firstDate.Month) & "/" & firstDate.Year.ToString() & "</td>")
         statistics.getDateRageByPeriod(firstDate, lastDate, clsStatistics.Period.TwoMonthsago)
-        writer.AppendLine("<td colspan=""5"" class=""max_header"">" & MonthName(firstDate.Month) & "/" & firstDate.Year.ToString() & "</td>")
+        writer.AppendLine("<td class=""max_header"" style=""width:12%;"">" & MonthName(firstDate.Month) & "/" & firstDate.Year.ToString() & "</td>")
         statistics.getDateRageByPeriod(firstDate, lastDate, clsStatistics.Period.LastMonth)
-        writer.AppendLine("<td colspan=""5"" class=""max_header"">" & MonthName(firstDate.Month) & "/" & firstDate.Year.ToString() & "</td>")
+        writer.AppendLine("<td class=""max_header"" style=""width:12%;"">" & MonthName(firstDate.Month) & "/" & firstDate.Year.ToString() & "</td>")
         statistics.getDateRageByPeriod(firstDate, lastDate, clsStatistics.Period.ThisMonth)
-        writer.AppendLine("<td colspan=""5"" class=""max_header"">" & MonthName(firstDate.Month) & "/" & firstDate.Year.ToString() & "</td>")
+        writer.AppendLine("<td class=""max_header"" style=""width:12%;"">" & MonthName(firstDate.Month) & "/" & firstDate.Year.ToString() & "</td>")
         writer.AppendLine("</tr>")
         writer.AppendLine("<tr>")
         writer.AppendLine("<td class=""header"">Concept</td>")
-        writer.AppendLine("<td class=""header"">Trans</td>")
-        writer.AppendLine("<td class=""header"">Avg.</td>")
-        writer.AppendLine("<td class=""header"">Trans per day</td>")
-        writer.AppendLine("<td class=""header"">Avg. per day</td>")
         writer.AppendLine("<td class=""header"">Total</td>")
-        writer.AppendLine("<td class=""header"">Trans</td>")
-        writer.AppendLine("<td class=""header"">Avg.</td>")
-        writer.AppendLine("<td class=""header"">Trans per day</td>")
-        writer.AppendLine("<td class=""header"">Avg. per day</td>")
         writer.AppendLine("<td class=""header"">Total</td>")
-        writer.AppendLine("<td class=""header"">Trans</td>")
-        writer.AppendLine("<td class=""header"">Avg.</td>")
-        writer.AppendLine("<td class=""header"">Trans per day</td>")
-        writer.AppendLine("<td class=""header"">Avg. per day</td>")
+        writer.AppendLine("<td class=""header"">Total</td>")
+        writer.AppendLine("<td class=""header"">Total</td>")
+        writer.AppendLine("<td class=""header"">Total</td>")
         writer.AppendLine("<td class=""header"">Total</td>")
         writer.AppendLine("</tr>")
         lines = New StringBuilder
         statistics = New clsStatistics
-        If (statistics.analyzeConcepts(basecatalog.resultadoConsulta, clsStatistics.Period.TwoMonthsago, currency)) Then
+        If (statistics.analyzeConcepts(basecatalog.resultadoConsulta, clsStatistics.Period.SixMonthsAgo, currency)) Then
             For Each drTemp As DataRow In statistics.resultadoConsulta.Tables(0).Rows
+                totalsCounter = 0
                 lines.AppendLine("<tr>")
                 lines.AppendLine("<td class=""cell_concept"">" & drTemp.Item("Concept") & "</td>")
                 For counter = 1 To statistics.resultadoConsulta.Tables(0).Columns.Count - 1
@@ -186,41 +169,20 @@
                     '| Getting totals and analyzing.
                     '+------------------------------------
                     cssClass = "cell"
-                    Select Case counter
-                        Case 4
-                            cssClass = "cell_reference"
-                        Case 5
-                            totals(0) = totals(0) + CDbl(drTemp.Item(counter))
-                        Case 9
-                            If (ToAnalyze = analyzeSense.increases) Then
-                                cssClass = IIf(CDbl(drTemp.Item(9)) > CDbl(drTemp.Item(4)), "cell_warning", "cell_passed")
-                            Else
-                                cssClass = IIf(CDbl(drTemp.Item(9)) < CDbl(drTemp.Item(4)), "cell_warning", "cell_passed")
-                            End If
-                        Case 10
-                            totals(1) = totals(1) + CDbl(drTemp.Item(counter))
-                        Case 14
-                            If (ToAnalyze = analyzeSense.increases) Then
-                                cssClass = IIf(CDbl(drTemp.Item(14)) > CDbl(drTemp.Item(9)), "cell_warning", "cell_passed")
-                            Else
-                                cssClass = IIf(CDbl(drTemp.Item(14)) < CDbl(drTemp.Item(9)), "cell_warning", "cell_passed")
-                            End If
 
-                        Case 15
-                            totals(2) = totals(2) + CDbl(drTemp.Item(counter))
-                    End Select
-                    lines.AppendLine("<td class=""" & cssClass & """>" & CDbl(drTemp.Item(counter)).ToString("N2") & "</td>")
+                    If (statistics.resultadoConsulta.Tables(0).Columns(counter).ColumnName.StartsWith("Total-")) Then
+                        lines.AppendLine("<td class=""" & cssClass & """>" & CDbl(drTemp.Item(counter)).ToString("N2") & "</td>")
+                        totals(totalsCounter) = totals(totalsCounter) + CDbl(drTemp.Item(counter))
+                        totalsCounter = totalsCounter + 1
+                    End If
                 Next
                 lines.AppendLine("</tr>")
             Next
             lines.AppendLine("<tr>")
             lines.AppendLine("<td class=""cell_concept"">Totals</td>")
-            lines.AppendLine("<td colspan=""4"" class=""cell""></td>")
-            lines.AppendLine("<td class=""cell_total"">" & totals(0).ToString("N2") & " </td>")
-            lines.AppendLine("<td colspan=""4"" class=""cell""></td>")
-            lines.AppendLine("<td class=""cell_total"">" & totals(1).ToString("N2") & " </td>")
-            lines.AppendLine("<td colspan=""4"" class=""cell""></td>")
-            lines.AppendLine("<td class=""cell_total"">" & totals(2).ToString("N2") & " </td>")
+            For totalsCounter = 0 To 6
+                lines.AppendLine("<td class=""cell_total"">" & totals(totalsCounter).ToString("N2") & " </td>")
+            Next
             lines.AppendLine("</tr>")
         Else
             'Error. Imposible to get the data
@@ -235,4 +197,5 @@
         writeTo.Text = writer.ToString
         Return booldev
     End Function
+
 End Class

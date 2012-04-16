@@ -266,8 +266,26 @@
     End Sub
 
     Private Sub endPageWorkflow(ByVal message As String)
+        Dim accounts As New clsAccount
+        Dim ds As New DataSet
+
         mview.SetActiveView(vstep004)
         lblResultado.Text = message
+        accounts.accountResumePerUserPerAccountTypePerState(Session("sWebUserId"), clsAccount.accountTypes.Checks, clsAccount.accountStates.Enabled)
+        ds = accounts.resultadoConsulta
+        accounts.accountResumePerUserPerAccountTypePerState(Session("sWebUserId"), clsAccount.accountTypes.Savings, clsAccount.accountStates.Enabled)
+        ds.Merge(accounts.resultadoConsulta)
+        accounts.accountResumePerUserPerAccountTypePerState(Session("sWebUserId"), clsAccount.accountTypes.CreditCards, clsAccount.accountStates.Enabled)
+        ds.Merge(accounts.resultadoConsulta)
+        accounts.accountResumePerUserPerAccountTypePerState(Session("sWebUserId"), clsAccount.accountTypes.Loans, clsAccount.accountStates.Enabled)
+        ds.Merge(accounts.resultadoConsulta)
+
+        ddlAccounttoMove.DataSource = ds
+        ddlAccounttoMove.DataTextField = "accountDescription"
+        ddlAccounttoMove.DataValueField = "account"
+        ddlAccounttoMove.DataBind()
+        ddlAccounttoMove.Items.Insert(0, New ListItem("-Please choose one-", "-1"))
+
     End Sub
 
     Private Sub manageAccountsSelectIndexChanged(ByVal listBox As _ListBoxChange)
@@ -379,4 +397,10 @@
             endPageWorkflow(message)
     End Sub
 
+    Protected Sub ddlAccounttoMove_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs) Handles ddlAccounttoMove.SelectedIndexChanged
+        Dim enc As New Encrypt
+        If (ddlAccounttoMove.SelectedValue > 0) Then
+            Server.Transfer(ResolveUrl("~/accountHistory.aspx?ref=" & enc.Encrypt_param(ddlAccounttoMove.SelectedValue)))
+        End If
+    End Sub
 End Class
