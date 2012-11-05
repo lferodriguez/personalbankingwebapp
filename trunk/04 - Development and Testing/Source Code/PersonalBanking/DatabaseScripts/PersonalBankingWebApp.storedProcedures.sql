@@ -135,7 +135,7 @@ on
 
 GO
 
-/****** Object:  StoredProcedure [dbo].[accountTypeBalancePerWebUser]    Script Date: 01/15/2012 13:39:13 ******/
+/****** Object:  StoredProcedure [dbo].[accountTypeBalancePerWebUser]    Script Date: 11/09/2012 19:39:13 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -145,13 +145,12 @@ GO
 
 
 create procedure [dbo].[accountTypeBalancePerWebUser]
-(@webUser as int)
+(@webUser as int, @AccountStatesToReview as smallint)
 as
 	set nocount on
 		select AccountTypeDescription, currencySymbol, SUM(balance) as total from cnsAccountBalances 
-		where webUser = @webUser
+		where webUser = @webUser and accountState = @AccountStatesToReview
 		group by AccountTypeDescription, CurrencySymbol 
-
 
 GO
 
