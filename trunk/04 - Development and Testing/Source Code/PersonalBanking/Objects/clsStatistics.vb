@@ -216,13 +216,14 @@
         Return booldev
     End Function
 
-    Public Function AccountAnalysis(ByVal webUser As Integer) As Boolean
+    Public Function AccountAnalysis(ByVal webUser As Integer, ByVal accountState As clsAccount.accountStates) As Boolean
         Dim booldev As Boolean = False
         Dim spparameters As New SpParameters
         spparameters.Add("webUser", webUser, SpParameter.tipoParametro.entero)
+        spparameters.Add("AccountStatesToReview", accountState, SpParameter.tipoParametro.entero)
         booldev = _dbCon.ejecutarProcedimientoAlmacenado("accountTypeBalancePerWebUser", spparameters)
         _informacionAdicional = _dbCon.informacionAdicional
-        _dsConsulta = _dbCon.resultadoConsulta        
+        _dsConsulta = _dbCon.resultadoConsulta
         Return booldev
     End Function
     Private Function getValue(ByVal data As DataTable, ByVal typeOfValue As clsCatalogs.catalogTransactionConceptTypeFlowType, ByVal currency As clsAccount.accountCurrencies) As Double

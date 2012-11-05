@@ -10,7 +10,7 @@
     End Sub
     Private Sub AccountsAnalisis()
         Dim st As New clsStatistics
-        If (st.AccountAnalysis(Session("sWebUserId"))) Then
+        If (st.AccountAnalysis(Session("sWebUserId"), clsAccount.accountStates.Enabled)) Then
             If (st.resultadoConsulta.Tables(0).Rows.Count > 0) Then
                 accountAnalysis.DataSource = st.resultadoConsulta
                 accountAnalysis.DataBind()
