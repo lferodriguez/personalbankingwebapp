@@ -98,7 +98,9 @@
     <Content Include="js\scripts.js" />
     <Content Include="minimalStatistics.aspx" />
     <Content Include="statistics.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="accountBalances.aspx.designer.vb">

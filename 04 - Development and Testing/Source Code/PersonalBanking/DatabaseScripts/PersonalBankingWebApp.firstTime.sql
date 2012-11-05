@@ -18,7 +18,7 @@ insert into transactionConceptFlowType values (3,'NONE',GETDATE());
 insert into TransactionConcept values (53,'LOAN SUBSCRIPTION',1	, getdate(),2,'N'); -- LOAN FEE
 insert into TransactionConcept values (54,'CREDIT CARD PAYMENT',1	, getdate(),2,'N'); -- TO CREDIT CARD
 insert into TransactionConcept values (15,'CREDIT CARD PARTIAL PAYMENT',2, getdate(),2,'N'); -- TO CREDIT CARD IN ACCOUNT
-insert into TransactionConcept values (57,'PARTIAL LOAN SUBSCRIPTION',2	, getdate(),2,'N'); -- LOAN FEE IN ACCOUNT
+insert into TransactionConcept values (57,'PARTIAL LOAN SUBSCRIPTION',2	, getdate(),2,'Y'); -- LOAN FEE IN ACCOUNT
 insert into TransactionConcept values (48,'VIA ELECTRONIC TRANSFER DEPOSIT',1	, getdate(),3,'N');
 insert into TransactionConcept values (49,'VIA ELECTRONIC TRANSFER WITHDRAWL',2	, getdate(),3,'N');
 insert into TransactionConcept values (35,'PURCHASE OF FOREIGN CURRENCY',2	, getdate(),	2,'N');
