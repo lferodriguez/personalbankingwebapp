@@ -319,4 +319,13 @@
         _dsConsulta = _dbCon.resultadoConsulta
         Return booldev
     End Function
+    Public Function CertificateOfDepositsAnalysis(ByVal webUser As Integer)
+        Dim booldev As Boolean = False
+        Dim spparameters As New SpParameters
+        spparameters.Add("webUser", webUser, SpParameter.tipoParametro.entero)
+        booldev = _dbCon.ejecutarProcedimientoAlmacenado("CertificateDepositsBalanceAndParametersPerWebUser", spparameters)
+        _informacionAdicional = _dbCon.informacionAdicional
+        _dsConsulta = _dbCon.resultadoConsulta
+        Return booldev
+    End Function
 End Class

@@ -37,7 +37,7 @@
     .frmcontainer_field{ font-size:10px;margin:5px;}
     .frmcontainer_data { font-size:10px;margin:5px;}    
                            
-    .frmcontainer_confirm{ font-size:10px;margin:5px; text-align:center;}
+    .frmcontainer_confirm{ font-size:10px;margin:5px; text-align:left;}
     
 #frmContainer_gridResults{}
     #frmContainer_gridResults table{width:100%;}

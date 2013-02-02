@@ -41,6 +41,15 @@ Partial Public Class main
     Protected WithEvents grdAccountAnalysis As Global.System.Web.UI.WebControls.GridView
 
     '''<summary>
+    '''grdCdsAccountAnalysis control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents grdCdsAccountAnalysis As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
     '''grdWebUserEvents control.
     '''</summary>
     '''<remarks>

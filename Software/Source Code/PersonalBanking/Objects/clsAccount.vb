@@ -7,6 +7,7 @@
         Savings = 2
         CreditCards = 3
         Loans = 4
+        CertificateOfDeposits = 5
     End Enum
     Enum accountStates
         Enabled = 1
