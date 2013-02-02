@@ -9,8 +9,12 @@
         Dim user As New clsWebUser
         Dim idWebUser As Integer = 0
         If (user.userAunthentication(txtEmail.Text, txtPassword.Text, idWebUser)) Then
-            Session("sWebUserId") = idWebUser
-            Response.Redirect(ResolveUrl("~/main.aspx"), False)
+            If (idWebUser > 0) Then
+                Session("sWebUserId") = idWebUser
+                Response.Redirect(ResolveUrl("~/main.aspx"), False)
+            Else
+                lblMensajes.Text = "Invalid user or password."
+            End If
         Else
             lblMensajes.Text = "Invalid user or password."
         End If

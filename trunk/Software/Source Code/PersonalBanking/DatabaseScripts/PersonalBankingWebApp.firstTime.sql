@@ -10,6 +10,7 @@ insert into accountTypeCatalog values (1,'CHECKS',GETDATE());
 insert into accountTypeCatalog values (2,'SAVINGS',GETDATE());
 insert into accountTypeCatalog values (3,'CREDIT CARD',GETDATE());
 insert into accountTypeCatalog values (4,'LOAN',GETDATE());
+insert into accountTypeCatalog values (5,'CERTIFICATE OF DEPOSITS',GETDATE());
 insert into TransactionConceptType values (1,'DEPOSITS',GETDATE());
 insert into TransactionConceptType values (2,'WITHDRAWALS',GETDATE());
 insert into transactionConceptFlowType values (1,'INCOME',GETDATE());
@@ -27,6 +28,7 @@ insert into TransactionConcept values (22,'BANK LOAN',2, getdate(),2,'N'); -- LO
 insert into attributes values (1,'CREDIT AMOUNT',GETDATE());
 insert into attributes values (2,'PAYMENT DAY',GETDATE());
 insert into attributes values (3,'CUT DAY',GETDATE());
+insert into attributes values (4,'EXPIRATION DATE',GETDATE())
 insert into currencyCatalog values (1,'Q','QUETZALES',GETDATE());
 insert into currencyCatalog values (2,'US $','US DOLLARS', GETDATE());
 insert into EventLevelCatalog values (1,'INFORMATION',GETDATE());
@@ -37,23 +39,27 @@ insert into bankCatalog values (1,'TEST BANK',GETDATE());
 insert into transactionConcept values (1,'PERSONAL INCOME',1,GETDATE(),1,'Y');
 insert into transactionConcept values (2,'HOUSEKEEPING SERVICES',2,GETDATE(),2,'Y');
 insert into transactionConcept values (3,'MOBILE PHONE',2,GETDATE(),2,'Y');
-insert into webUser values ('tests@tests.com','tests','Jhon','Connor','Y',GETDATE(),GETDATE());
+insert into webUser values (1,'tests@tests.com','3773053717633237266390375763','Jhon','Connor','Y',GETDATE(),GETDATE()); -- test
 insert into account values ('0000000001',1,1,1,getdate(),'CONNOR, JHON',1,1);
 insert into account values ('0000000002',1,2,1,getdate(),'CONNOR, JHON',1,1);
 insert into account values ('0000000003',1,1,2,getdate(),'CONNOR, JHON',1,1);
 insert into account values ('1234123412341234',1,1,3,getdate(),'CONNOR, JHON',1,1);
 insert into account values ('1234123412341234',1,2,3,getdate(),'CONNOR, JHON',1,1);
 insert into account values ('123412341234',1,1,4,getdate(),'CONNOR, JHON',1,1);
+insert into account values ('123456789',1,1,5,GETDATE(),'CONNOR, JHON',1,1);
 insert into webUserAccounts values (1,1,GETDATE());
 insert into webUserAccounts values (1,2,GETDATE());
 insert into webUserAccounts values (1,3,GETDATE());
 insert into webUserAccounts values (1,4,GETDATE());
 insert into webUserAccounts values (1,5,GETDATE());
 insert into webUserAccounts values (1,6,GETDATE());
+insert into webUserAccounts values (1,7,GETDATE());
 insert into accountAttributes values (1,4,10500.00, getdate());
 insert into accountAttributes values (2,4,15, getdate());
 insert into accountAttributes values (3,4,7, getdate());
-/*Demo of Transaction*/
+insert into accountAttributes values (4,7,'2012/07/28',GETDATE()); -- Format Date YYYY/mm/dd
+insert into accountAttributes values (4,4,'2012/07/28',GETDATE()); -- Format Date YYYY/mm/dd
+/*Demo of Transaction*/		
 insert into AccountTransaction values (1,1,GETDATE(),100.00,getdate(),'DEMO TRANSACTION 1 FOR CHECKS ACCOUNT');
 insert into AccountTransaction values (3,1,GETDATE(),100.00,getdate(),'DEMO TRANSACTION 1 FOR CHECKS ACCOUNT');
 insert into AccountTransaction values (1,2,GETDATE(),100.01,getdate(),'DEMO TRANSACTION 1 FOR CHECKS ACCOUNT US $');

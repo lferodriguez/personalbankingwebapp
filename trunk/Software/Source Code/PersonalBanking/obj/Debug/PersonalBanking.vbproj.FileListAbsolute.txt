@@ -8,3 +8,13 @@ D:\Personal\PersonalBanking\obj\Debug\GenerateResource.write.1.tlog
 D:\Personal\PersonalBanking\obj\Debug\PersonalBanking.dll
 D:\Personal\PersonalBanking\obj\Debug\PersonalBanking.xml
 D:\Personal\PersonalBanking\obj\Debug\PersonalBanking.pdb
+C:\Users\lrodriguez\Desktop\PersonalBanking\bin\PersonalBanking.dll
+C:\Users\lrodriguez\Desktop\PersonalBanking\bin\PersonalBanking.pdb
+C:\Users\lrodriguez\Desktop\PersonalBanking\bin\PersonalBanking.xml
+C:\Users\lrodriguez\Desktop\PersonalBanking\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\lrodriguez\Desktop\PersonalBanking\obj\Debug\PersonalBanking.Resources.resources
+C:\Users\lrodriguez\Desktop\PersonalBanking\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\lrodriguez\Desktop\PersonalBanking\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\lrodriguez\Desktop\PersonalBanking\obj\Debug\PersonalBanking.dll
+C:\Users\lrodriguez\Desktop\PersonalBanking\obj\Debug\PersonalBanking.xml
+C:\Users\lrodriguez\Desktop\PersonalBanking\obj\Debug\PersonalBanking.pdb

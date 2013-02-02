@@ -2,10 +2,11 @@
     Inherits System.Web.UI.Page
 
     Private Enum _AccountSelection
-        ChecksAndSavings = 1
+        ChecksSavings = 1        
         ChecksSavingsCreditCards = 2
         CreditCards = 3
         Loans = 4
+        CheckSavingsCertDeposits = 5
     End Enum
     Private Enum _userAction
         AddAnIncome = 1
@@ -126,10 +127,17 @@
         accountsToLoad = New DataSet
 
         Select Case selection
-            Case _AccountSelection.ChecksAndSavings
+            Case _AccountSelection.ChecksSavings
                 accounts.accountResumePerUserPerAccountTypePerState(Session("sWebUserId"), clsAccount.accountTypes.Checks, clsAccount.accountStates.Enabled)
                 accountsToLoad = accounts.resultadoConsulta
                 accounts.accountResumePerUserPerAccountTypePerState(Session("sWebUserId"), clsAccount.accountTypes.Savings, clsAccount.accountStates.Enabled)
+                accountsToLoad.Merge(accounts.resultadoConsulta)                
+            Case _AccountSelection.CheckSavingsCertDeposits
+                accounts.accountResumePerUserPerAccountTypePerState(Session("sWebUserId"), clsAccount.accountTypes.Checks, clsAccount.accountStates.Enabled)
+                accountsToLoad = accounts.resultadoConsulta
+                accounts.accountResumePerUserPerAccountTypePerState(Session("sWebUserId"), clsAccount.accountTypes.Savings, clsAccount.accountStates.Enabled)
+                accountsToLoad.Merge(accounts.resultadoConsulta)
+                accounts.accountResumePerUserPerAccountTypePerState(Session("sWebUserId"), clsAccount.accountTypes.CertificateOfDeposits, clsAccount.accountStates.Enabled)
                 accountsToLoad.Merge(accounts.resultadoConsulta)
             Case _AccountSelection.ChecksSavingsCreditCards
                 accounts.accountResumePerUserPerAccountTypePerState(Session("sWebUserId"), clsAccount.accountTypes.Checks, clsAccount.accountStates.Enabled)
@@ -229,7 +237,7 @@
                 jquerydatepicker1.cargarJqueryDatePicker()
                 jquerydatepicker1.mostrarDatePickerEnTextBox(txtDate)
                 validacionesEnCliente(_validationType.IncomeAndExpenses)
-                strMessage = loadUserAccounts(_AccountSelection.ChecksAndSavings, ddlAccounts)
+                strMessage = loadUserAccounts(_AccountSelection.CheckSavingsCertDeposits, ddlAccounts)
                 strMessage = strMessage & loadTransactionConcepts(_userAction.AddAnIncome)
             Case _userAction.AddACreditCardPayment  'Credit card payments
                 mview.SetActiveView(vstep003)
@@ -238,7 +246,7 @@
                 jquerydatepicker1.mostrarDatePickerEnTextBox(txtDate01)
                 validacionesEnCliente(_validationType.CreditCardsAndLoansPayments)
                 strMessage = loadUserAccounts(_AccountSelection.CreditCards, ddlDestinationAccount)
-                strMessage = strMessage & loadUserAccounts(_AccountSelection.ChecksAndSavings, ddlSourceAccount)
+                strMessage = strMessage & loadUserAccounts(_AccountSelection.ChecksSavings, ddlSourceAccount)
             Case _userAction.AddALoanPayment  ' Loan payments
                 mview.SetActiveView(vstep003)
                 lblFirstMessage.Text = "Welcome, please report your loan subscriptions."
@@ -246,15 +254,15 @@
                 jquerydatepicker1.mostrarDatePickerEnTextBox(txtDate01)
                 validacionesEnCliente(_validationType.CreditCardsAndLoansPayments)
                 strMessage = loadUserAccounts(_AccountSelection.Loans, ddlDestinationAccount)
-                strMessage = strMessage & loadUserAccounts(_AccountSelection.ChecksAndSavings, ddlSourceAccount)
+                strMessage = strMessage & loadUserAccounts(_AccountSelection.ChecksSavings, ddlSourceAccount)
             Case _userAction.MakeATransfer
                 mview.SetActiveView(vstep003)
                 lblFirstMessage.Text = "Welcome, please enter the amout to transfer from one account to another."
                 jquerydatepicker1.cargarJqueryDatePicker()
                 jquerydatepicker1.mostrarDatePickerEnTextBox(txtDate01)
                 validacionesEnCliente(_validationType.Transfers)
-                strMessage = loadUserAccounts(_AccountSelection.ChecksAndSavings, ddlDestinationAccount)
-                strMessage = strMessage & loadUserAccounts(_AccountSelection.ChecksAndSavings, ddlSourceAccount)
+                strMessage = loadUserAccounts(_AccountSelection.CheckSavingsCertDeposits, ddlDestinationAccount)
+                strMessage = strMessage & loadUserAccounts(_AccountSelection.CheckSavingsCertDeposits, ddlSourceAccount)
         End Select
         If (strMessage.Length > 0) Then
             endPageWorkflow(strMessage)
@@ -278,6 +286,8 @@
         accounts.accountResumePerUserPerAccountTypePerState(Session("sWebUserId"), clsAccount.accountTypes.CreditCards, clsAccount.accountStates.Enabled)
         ds.Merge(accounts.resultadoConsulta)
         accounts.accountResumePerUserPerAccountTypePerState(Session("sWebUserId"), clsAccount.accountTypes.Loans, clsAccount.accountStates.Enabled)
+        ds.Merge(accounts.resultadoConsulta)
+        accounts.accountResumePerUserPerAccountTypePerState(Session("sWebUserId"), clsAccount.accountTypes.CertificateOfDeposits, clsAccount.accountStates.Enabled)
         ds.Merge(accounts.resultadoConsulta)
 
         ddlAccounttoMove.DataSource = ds

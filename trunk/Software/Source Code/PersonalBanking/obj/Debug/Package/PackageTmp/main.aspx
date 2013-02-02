@@ -22,7 +22,7 @@
         <div id ="lblIncomeAnalysis" runat="server"></div>            
         </td>
     </tr>
-    <tr><td style="height:20px;">Important information about your credit cards.</td></tr>
+    <tr><td style="height:20px;">Hey! Take a look of your Credit Cards.</td></tr>
     <tr>
         <td style="padding-top:10px">
         <asp:GridView ID="grdAccountAnalysis" runat="server" AutoGenerateColumns="False" CssClass="homeAnalysis" Width="75%">
@@ -34,12 +34,26 @@
                     <asp:BoundField HeaderText="Max Credit" DataField="MaxCredit" DataFormatString="{0:N2}" ItemStyle-HorizontalAlign="Center"/>
                     <asp:BoundField HeaderText="Available" DataField="available" DataFormatString="{0:N2}" ItemStyle-HorizontalAlign="Center"/>
                     <asp:BoundField HeaderText="Next Pay Day" DataField="PayDay" ItemStyle-HorizontalAlign="Center" />                    
-                    <asp:BoundField HeaderText="Next Cut Day" DataField="CutDay" ItemStyle-HorizontalAlign="Center" />                    
+                    <asp:BoundField HeaderText="Next Cut Day" DataField="CutDay" ItemStyle-HorizontalAlign="Center" />  
+                    <asp:BoundField HeaderText="Expiration Date" DataField="ExpirationDate" ItemStyle-HorizontalAlign="Center" />                                        
                 </Columns>
             </asp:GridView>
         </td>
     </tr>
-    <tr><td style="height:20px;"></td></tr>
+    <tr><td style="height:20px;">Important information about your Certificates of Deposits</td></tr>
+    <tr>
+        <td style="padding-top:10px">
+        <asp:GridView ID="grdCdsAccountAnalysis" runat="server" AutoGenerateColumns="False" CssClass="homeAnalysis" Width="50%">
+                <Columns>
+                    <asp:BoundField HeaderText="Currency" DataField="CurrencySymbol" />
+                    <asp:BoundField HeaderText="Certificate Of Deposits" DataField="number" />                    
+                    <asp:BoundField HeaderText="Bank" DataField="BankName" ItemStyle-HorizontalAlign="Center"/>                    
+                    <asp:BoundField HeaderText="Balance" DataField="balance" DataFormatString="{0:N2}" ItemStyle-HorizontalAlign="Center"/>
+                    <asp:BoundField HeaderText="Expiration Date" DataField="ExpirationDate" ItemStyle-HorizontalAlign="Center" />                                        
+                </Columns>
+            </asp:GridView>
+        </td>
+    </tr>
      <tr>
         <td style="padding-top:10px">
         <asp:GridView ID="grdWebUserEvents" runat="server" AutoGenerateColumns="False" CssClass="homeAnalysis" Width="75%">
